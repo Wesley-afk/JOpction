@@ -2,37 +2,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.mavenproject7;
+package com.mycompany.usar_jopiction;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
  * @author w.rocha
  */
-public class Mavenproject7 {
-
+public class Usar_Jopiction {
     public static void main(String[] args) {
-        float nota1 = 0;
-        float nota2 = 0;
-        float media = 0;
+       /*
+         O que fazer neste código: para treinar e aprender
+         a usar o import javax.swing.JOptionPane; no caso o 
+         JOptionPane.
+         Este código gera 5 tabelas txt no diretório. das 
+         tábuadas de  
+        */ 
+        Scanner ler = new Scanner(System.in);
+        int[] vetor = new int[5];
+        String[] nomeDoArquivo = new String[5];
 
-        // Pega a primeira nota através de uma caixa de diálogo
-        String inputNota1 = JOptionPane.showInputDialog("Entre com a nota 1:");
-        nota1 = Float.parseFloat(inputNota1);  // Converte a string recebida para float
-        
-        // Pega a segunda nota através de uma caixa de diálogo
-        try{ 
-        String inputNota2 = JOptionPane.showInputDialog("Entre com a nota 2:");
-        nota2 = Float.parseFloat(inputNota2);  // Converte a string recebida para float
-        } 
-        catch(NumberFormatException e){
-            e.getMessage();
+        System.out.println("Digite 5 valores inteiros:");
+        for (int i = 0; i < 5; i++) {
+            vetor[i] = ler.nextInt();
         }
-        // Calcula a média das notas
-        media = (nota1 + nota2) / 2;
+        ler.nextLine(); 
 
-        // Exibe o resultado em uma caixa de diálogo
-        JOptionPane.showMessageDialog(null, "A média é: " + media);
+        System.out.println("Digite os nomes dos arquivos:");
+        for (int i = 0; i < 5; i++) {
+            nomeDoArquivo[i] = ler.nextLine();
+        }
+
+        for (int i = 0; i < 5; i++) {
+        try (FileWriter arquivo = new FileWriter(nomeDoArquivo[i] + ".txt");
+            PrintWriter gravar = new PrintWriter(arquivo)) {
+
+            for (int j = 1; j <= 10; j++) {
+            gravar.println(vetor[i] + " x " + j + " = " + (vetor[i] * j));
+            }
+
+        System.out.println("Arquivo " + nomeDoArquivo[i] + ".txt gerado com sucesso!");
+        } catch (IOException e) {
+          System.out.println("Erro ao criar o arquivo " + nomeDoArquivo[i] + ".txt: " + e.getMessage());
+        }
+        }
     }
 }
