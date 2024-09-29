@@ -21,7 +21,7 @@ public class Usar_Jopiction {
          a usar o import javax.swing.JOptionPane; no caso o 
          JOptionPane.
          Este código gera 5 tabelas txt no diretório. das 
-         tábuadas de  
+         tábuadas do num digitado
         */ 
         Scanner ler = new Scanner(System.in);
         int[] vetor = new int[5];
